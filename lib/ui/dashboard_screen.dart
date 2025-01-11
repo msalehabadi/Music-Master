@@ -3,6 +3,7 @@ import 'package:spotify_clone/constants/constants.dart';
 import 'package:spotify_clone/ui/home_screen.dart';
 import 'package:spotify_clone/ui/library_screen.dart';
 import 'package:spotify_clone/ui/search_category_screen.dart';
+import 'package:spotify_clone/ui/setting_screen.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -17,6 +18,9 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      drawer: Drawer(
+        child: SettingScreen(),
+      ),
       bottomNavigationBar: Container(
         height: 64,
         width: MediaQuery.of(context).size.width,

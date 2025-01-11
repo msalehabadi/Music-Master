@@ -65,7 +65,7 @@ class _ActionButtons extends StatelessWidget {
                   Radius.circular(25),
                 ),
               ),
-              backgroundColor: MyColors.greenColor,
+              backgroundColor: const Color.fromARGB(255, 228, 34, 186),
             ),
             onPressed: () {
               Navigator.of(context).push(

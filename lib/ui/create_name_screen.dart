@@ -132,7 +132,7 @@ class _CreateNameScreenState extends State<CreateNameScreen> {
                 style: TextStyle(
                   fontFamily: "AM",
                   fontSize: 12,
-                  color: MyColors.greenColor,
+                  color: Color.fromARGB(255, 231, 44, 191),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -155,7 +155,7 @@ class _CreateNameScreenState extends State<CreateNameScreen> {
                 style: TextStyle(
                   fontFamily: "AM",
                   fontSize: 12,
-                  color: MyColors.greenColor,
+                  color: Color.fromARGB(255, 231, 44, 191),
                   fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.start,
@@ -179,7 +179,7 @@ class _CreateNameScreenState extends State<CreateNameScreen> {
                     child: Checkbox(
                       visualDensity: VisualDensity.adaptivePlatformDensity,
                       shape: const CircleBorder(),
-                      activeColor: MyColors.greenColor,
+                      activeColor: const Color.fromARGB(255, 215, 30, 144),
                       checkColor: MyColors.whiteColor,
                       value: newsCheck,
                       onChanged: (onChanged) {
@@ -212,7 +212,7 @@ class _CreateNameScreenState extends State<CreateNameScreen> {
                     scale: 1.5,
                     child: Checkbox(
                       shape: const CircleBorder(),
-                      activeColor: MyColors.greenColor,
+                      activeColor: const Color.fromARGB(255, 215, 30, 144),
                       checkColor: MyColors.whiteColor,
                       value: marketPurposeCheck,
                       onChanged: (onChanged) {

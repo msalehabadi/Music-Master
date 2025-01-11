@@ -19,6 +19,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: MyColors.blackColor,
+      drawer: Drawer(
+        child: SettingScreen(),
+      ),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -33,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   _TopMixes(),
                   _RecentPlays(),
                   SliverPadding(
-                    padding: EdgeInsets.only(bottom: 100),
+                    padding: EdgeInsets.only(bottom: 500),
                   ),
                 ],
               ),
@@ -635,12 +638,7 @@ class _Header extends StatelessWidget {
                       Image.asset("images/icon_recent.png"),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SettingScreen(),
-                            ),
-                          );
+                          Scaffold.of(context).openDrawer();
                         },
                         child: Image.asset("images/icon_settings.png"),
                       ),
