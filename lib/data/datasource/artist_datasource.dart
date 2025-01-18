@@ -9,32 +9,32 @@ class ArtistLocalDatasource extends ArtistDatasource {
   Future<List<Artist>> getArtistList() async {
     return [
       Artist(
-        "21-Savage.jpg",
-        "21 Savage",
+        "Behnam-Bani.jpg",
+        "Behnam Bani",
       ),
       Artist(
-        "Adele.jpg",
-        "Adele",
+        "Ebi.jpg",
+        "Ebi",
       ),
       Artist(
-        "Cardi-B.jpg",
-        "Cardi B",
+        "Metallica.jpg",
+        "Metallica",
       ),
       Artist(
-        "DaBaby.jpg",
-        "DaBaby",
+        "Mohsen-Yeganeh.jpg",
+        "Mohsen-Yeganeh",
       ),
       Artist(
-        "Doja-Cat.jpg",
-        "Doja Cat",
+        "Roger-Waters.jpg",
+        "Roger-Waters",
       ),
       Artist(
-        "Drake.jpg",
-        "Drake",
+        "ABBA.jpeg",
+        "ABBA",
       ),
       Artist(
-        "Eminem.jpg",
-        "Eminem",
+        "Nirvana.jpeg",
+        "Nirvana",
       ),
     ];
   }

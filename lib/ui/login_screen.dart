@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/DI/service_locator.dart';
-import 'package:spotify_clone/bloc/artist/artist_bloc.dart';
-import 'package:spotify_clone/bloc/artist/artist_event.dart';
 import 'package:spotify_clone/constants/constants.dart';
 import 'package:spotify_clone/data/datasource/user_datasource.dart'; // Import UserDataSource
-import 'package:spotify_clone/ui/choose_artist_screen.dart';
 import 'package:spotify_clone/ui/dashboard_screen.dart'; // Import DashBoardScreen
 
 class LoginScreen extends StatefulWidget {
