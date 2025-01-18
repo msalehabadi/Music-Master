@@ -17,8 +17,7 @@ dependencies:
   animations: ^2.0.11
   flutter_barcode_scanner: ^2.0.0
   video_player: ^2.8.2
-  
-  
+  tapsell_plus: ^2.2.7
   
 
 

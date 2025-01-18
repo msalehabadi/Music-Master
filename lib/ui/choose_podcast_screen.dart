@@ -79,7 +79,7 @@ class ChoosePodcastScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const DashBoardScreen(),
+                            builder: (context) => const DashBoardScreen(userType: 'free',),
                           ),
                         );
                       },

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:spotify_clone/constants/constants.dart';
 import 'package:spotify_clone/ui/home_screen.dart';
 import 'package:spotify_clone/ui/library_screen.dart';
 import 'package:spotify_clone/ui/search_category_screen.dart';
-import 'package:spotify_clone/ui/setting_screen.dart';
 
 class DashBoardScreen extends StatefulWidget {
-  const DashBoardScreen({super.key});
+  final String userType; // Define userType as a parameter
+
+  const DashBoardScreen({super.key, required this.userType}); // Accept userType in the constructor
 
   @override
   State<DashBoardScreen> createState() => _DashBoardScreenState();
@@ -14,72 +14,84 @@ class DashBoardScreen extends StatefulWidget {
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      drawer: Drawer(
-        child: SettingScreen(),
-      ),
-      bottomNavigationBar: Container(
-        height: 64,
-        width: MediaQuery.of(context).size.width,
-        color: MyColors.blackColor.withOpacity(0.95),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 45),
-          child: BottomNavigationBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            selectedLabelStyle: const TextStyle(fontFamily: "AM", fontSize: 13),
-            selectedItemColor: const Color(0xffE5E5E5),
-            unselectedItemColor: MyColors.lightGrey,
-            type: BottomNavigationBarType.fixed,
-            currentIndex: _currentIndex,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            onTap: (value) {
-              setState(() {
-                _currentIndex = value;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Image.asset('images/icon_home.png'),
-                activeIcon: Image.asset('images/icon_home_active.png'),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/icon_search_bottomnav.png',
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black.withOpacity(0.95),
+        elevation: 0,
+        selectedLabelStyle: const TextStyle(fontFamily: "AM", fontSize: 13),
+        selectedItemColor: const Color(0xffE5E5E5),
+        unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (value) {
+          setState(() {
+            _currentIndex = value;
+          });
+        },
+        items: widget.userType == 'premium' // Access userType using widget.userType
+            ? [
+                BottomNavigationBarItem(
+                  icon: Image.asset('images/icon_home.png'),
+                  activeIcon: Image.asset('images/icon_home_active.png'),
+                  label: "Home",
                 ),
-                activeIcon: Image.asset(
-                  'images/icon_search_active.png',
-                  color: MyColors.whiteColor,
+                BottomNavigationBarItem(
+                  icon: Image.asset('images/icon_search_bottomnav.png'),
+                  activeIcon: Image.asset(
+                    'images/icon_search_active.png',
+                    color: Colors.white,
+                  ),
+                  label: "Search",
                 ),
-                label: "Search",
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/icon_library.png',
-                  color: MyColors.lightGrey,
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'images/icon_library.png',
+                    color: Colors.grey,
+                  ),
+                  activeIcon: Image.asset(
+                    'images/icon_library_active.png',
+                    color: Colors.white,
+                  ),
+                  label: "Your Library",
                 ),
-                activeIcon: Image.asset(
-                  'images/icon_library_active.png',
-                  color: MyColors.whiteColor,
+              ]
+            : [
+                BottomNavigationBarItem(
+                  icon: Image.asset('images/icon_home.png'),
+                  activeIcon: Image.asset('images/icon_home_active.png'),
+                  label: "Home",
                 ),
-                label: "Your Library",
-              ),
-            ],
-          ),
-        ),
+                BottomNavigationBarItem(
+                  icon: Image.asset(
+                    'images/icon_library.png',
+                    color: Colors.grey,
+                  ),
+                  activeIcon: Image.asset(
+                    'images/icon_library_active.png',
+                    color: Colors.white,
+                  ),
+                  label: "Your Library",
+                ),
+              ],
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: const [
-          HomeScreen(),
-          SearchCategoryScreen(),
-          LibraryScreen(),
-        ],
+        children: widget.userType == 'premium' // Access userType using widget.userType
+            ? [
+                HomeScreen(userType: widget.userType), // Pass userType to HomeScreen
+                SearchCategoryScreen(),
+                LibraryScreen(),
+              ]
+            : [
+                HomeScreen(userType: widget.userType), // Pass userType to HomeScreen
+                LibraryScreen(),
+              ],
       ),
     );
   }

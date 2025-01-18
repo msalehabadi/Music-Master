@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/constants/constants.dart';
 import 'package:spotify_clone/ui/create_email_screen.dart';
+import 'package:spotify_clone/ui/login_screen.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -20,16 +21,16 @@ class OnBoardingScreen extends StatelessWidget {
               height: 10,
             ),
             const Text(
-              "بیشترین تعداد آکورد آهنگ",
+              "World's Greatest Music Streaming Platform",
               style: TextStyle(
-                fontFamily: "AEB",
+                fontFamily: "AB",
                 fontWeight: FontWeight.bold,
-                fontSize: 28,
+                fontSize: 20,
                 color: MyColors.whiteColor,
               ),
             ),
             const Text(
-              "بصورت رایگان",
+              "All Totally for Free",
               style: TextStyle(
                 fontFamily: "AEB",
                 fontWeight: FontWeight.bold,
@@ -75,12 +76,12 @@ class _ActionButtons extends StatelessWidget {
               );
             },
             child: const Text(
-              "ثبت نام",
+              "Sign Up",
               style: TextStyle(
                 fontFamily: "AB",
                 fontSize: 16,
                 height: 1.2, // اضافه کردن ارتفاع خط
-                color: MyColors.blackColor,
+                color: Color.fromARGB(255, 41, 41, 41),
               ),
             ),
           ),
@@ -100,9 +101,15 @@ class _ActionButtons extends StatelessWidget {
                 color: MyColors.lightGrey,
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+              );
+            },
             child: const Text(
-              "ورود",
+              "Sign In",
               style: TextStyle(
                 fontFamily: "AB",
                 fontSize: 16,
