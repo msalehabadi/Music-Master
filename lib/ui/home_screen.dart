@@ -277,7 +277,7 @@ class _MostPopArtists extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Recently played",
+              "Popular Artists",
               style: TextStyle(
                 fontFamily: "AM",
                 fontSize: 24,
