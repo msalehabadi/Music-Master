@@ -7,6 +7,8 @@ import 'package:spotify_clone/bloc/album/album_event.dart';
 import 'package:spotify_clone/bloc/playlist/playlist_bloc.dart';
 import 'package:spotify_clone/bloc/playlist/playlist_event.dart';
 import 'package:spotify_clone/constants/constants.dart';
+import 'package:spotify_clone/data/datasource/artist_datasource.dart';
+import 'package:spotify_clone/data/model/artist.dart';
 import 'package:spotify_clone/ui/albumview_screen.dart';
 import 'package:spotify_clone/ui/playlist_search_screen.dart';
 import 'package:spotify_clone/ui/setting_screen.dart';
@@ -35,6 +37,7 @@ class HomeScreen extends StatelessWidget {
               child: CustomScrollView(
                 slivers: [
                   _Header(userType: userType),
+                  _MostPopArtists(),
                   _JumpBackin(),
                   _TopMixes(),
                   _RecentPlays(),
@@ -251,6 +254,110 @@ class _RecentPlays extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MostPopArtists extends StatelessWidget {
+  const _MostPopArtists();
+
+  @override
+  Widget build(BuildContext context) {
+    // Create an instance of the local datasource
+    final ArtistDatasource artistDatasource = ArtistLocalDatasource();
+
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Recently played",
+              style: TextStyle(
+                fontFamily: "AM",
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: MyColors.whiteColor,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            FutureBuilder<List<Artist>>(
+              future: artistDatasource.getArtistList(), // Fetch artist data
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No artists found.'));
+                }
+
+                final artists = snapshot.data!;
+
+                return SizedBox(
+                  height: 199,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: artists.length,
+                    itemBuilder: (context, index) {
+                      final artist = artists[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 16), // Add gap between items
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) {
+                                    var bloc = AlbumBloc(locator.get());
+                                    bloc.add(AlbumListEvent(artist.artistName ?? "Unknown Artist"));
+                                    return bloc;
+                                  },
+                                  child: const AlbumViewScreen(),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipOval(
+                                child: SizedBox(
+                                  height: 133,
+                                  width: 133,
+                                  child: Image.asset(
+                                    "images/artists/${artist.artistImage ?? 'default_image.png'}",
+                                    fit: BoxFit.cover, // Ensure the image covers the circular area
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                artist.artistName ?? "Unknown Artist",
+                                style: const TextStyle(
+                                  fontFamily: "AB",
+                                  fontSize: 12,
+                                  color: MyColors.whiteColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -783,6 +890,7 @@ class _Header extends StatelessWidget {
                             ],
                           ),
                         ),
+                        const SizedBox(width: 10),
                         _RecentPlaysChip( // Removed const
                           image: "artists/JID.jpg",
                           title: "JID",
@@ -930,6 +1038,8 @@ class _RecentPlaysChip extends StatelessWidget {
     );
   }
 }
+
+
 
 class _MixChip extends StatelessWidget {
   const _MixChip({required this.subtitle, required this.image});
