@@ -11,6 +11,7 @@ import 'package:spotify_clone/data/datasource/artist_datasource.dart';
 import 'package:spotify_clone/data/model/artist.dart';
 import 'package:spotify_clone/ui/albumview_screen.dart';
 import 'package:spotify_clone/ui/playlist_search_screen.dart';
+import 'package:spotify_clone/ui/premium-purchase-screen.dart';
 import 'package:spotify_clone/ui/setting_screen.dart';
 import 'package:spotify_clone/widgets/bottom_player.dart';
 //import 'package:tapsell_plus/tapsell_plus.dart';
@@ -779,9 +780,7 @@ class _Header extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Container(
@@ -831,9 +830,71 @@ class _Header extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
+                const SizedBox(height: 20),
+
+                // Rectangular Banner between Music/Podcasts and Liked Songs/JID sections
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20), // Padding from bottom
+                  child: GestureDetector(
+                    onTap: () {
+                      // Navigate to Premium Purchase Screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PremiumPurchaseScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 80, // Adjust height as needed
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10), // Rounded corners
+                        gradient: const LinearGradient(
+                          colors: [Colors.pink, Colors.purple], // Pink to purple gradient
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Go Premium',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Text(
+                                  'Unlock all features',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white70,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
+
+                // Liked Songs, JID, and other content
                 Column(
                   children: [
                     Row(
@@ -876,9 +937,7 @@ class _Header extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
+                              const SizedBox(width: 10),
                               const Text(
                                 "Liked Songs",
                                 style: TextStyle(
@@ -891,7 +950,7 @@ class _Header extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        _RecentPlaysChip( // Removed const
+                        _RecentPlaysChip(
                           image: "artists/JID.jpg",
                           title: "JID",
                         ),
@@ -917,7 +976,7 @@ class _Header extends StatelessWidget {
                               ),
                             );
                           },
-                          child: _RecentPlaysChip( // Removed const
+                          child: _RecentPlaysChip(
                             image: "home/american-dream.jpg",
                             title: "american dream",
                           ),
@@ -938,7 +997,7 @@ class _Header extends StatelessWidget {
                               ),
                             );
                           },
-                          child: _RecentPlaysChip( // Removed const
+                          child: _RecentPlaysChip(
                             image: "home/UTOPIA.jpg",
                             title: "UTOPIA",
                           ),
@@ -967,12 +1026,12 @@ class _Header extends StatelessWidget {
                               ),
                             );
                           },
-                          child: _RecentPlaysChip( // Removed const
+                          child: _RecentPlaysChip(
                             image: "home/Upbeat-Mix.jpg",
                             title: "Upbeat Mix",
                           ),
                         ),
-                        _RecentPlaysChip( // Removed const
+                        _RecentPlaysChip(
                           image: "home/Daily-Mix-1.jpg",
                           title: "Daily Mix",
                         ),
