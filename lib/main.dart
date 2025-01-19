@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         splashColor: Colors.transparent,
       ),
       debugShowCheckedModeBanner: false,
-      home: const DashBoardScreen(userType: 'premium'),
+      home: const DashBoardScreen(userType: 'free'),
       // home: const SplashScreen(),
     );
   }

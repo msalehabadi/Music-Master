@@ -832,67 +832,68 @@ class _Header extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Rectangular Banner between Music/Podcasts and Liked Songs/JID sections
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20), // Padding from bottom
-                  child: GestureDetector(
-                    onTap: () {
-                      // Navigate to Premium Purchase Screen
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PremiumPurchaseScreen(),
+                // Conditionally render the rectangular banner for free users only
+                if (userType == 'free')
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20), // Padding from bottom
+                    child: GestureDetector(
+                      onTap: () {
+                        // Navigate to Premium Purchase Screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PremiumPurchaseScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 80, // Adjust height as needed
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10), // Rounded corners
+                          gradient: const LinearGradient(
+                            colors: [Colors.pink, Colors.purple], // Pink to purple gradient
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
                         ),
-                      );
-                    },
-                    child: Container(
-                      height: 80, // Adjust height as needed
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10), // Rounded corners
-                        gradient: const LinearGradient(
-                          colors: [Colors.pink, Colors.purple], // Pink to purple gradient
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Go Premium',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Go Premium',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Unlock all features',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white70,
+                                  Text(
+                                    'Unlock all features',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.white70,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                          ],
+                                ],
+                              ),
+                              const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
 
                 // Liked Songs, JID, and other content
                 Column(
