@@ -900,106 +900,63 @@ class _Header extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 55,
-                          width: (MediaQuery.of(context).size.width / 1.77) - 45,
-                          decoration: const BoxDecoration(
-                            color: MyColors.darGreyColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            height: 55,
+                            decoration: const BoxDecoration(
+                              color: MyColors.darGreyColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(5),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            children: [
-                              Stack(
-                                alignment: AlignmentDirectional.center,
-                                children: [
-                                  Container(
-                                    height: 55,
-                                    width: 55,
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(5),
-                                        bottomLeft: Radius.circular(5),
-                                      ),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "images/liked_songs.png",
+                            child: Row(
+                              children: [
+                                Stack(
+                                  alignment: AlignmentDirectional.center,
+                                  children: [
+                                    Container(
+                                      height: 55,
+                                      width: 55,
+                                      decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(5),
+                                          bottomLeft: Radius.circular(5),
                                         ),
-                                        fit: BoxFit.cover,
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            "images/liked_songs.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Image.asset(
-                                    'images/icon_heart_white.png',
-                                    height: 20,
-                                    width: 20,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(width: 10),
-                              const Text(
-                                "Liked Songs",
-                                style: TextStyle(
-                                  fontFamily: "AB",
-                                  fontSize: 12,
-                                  color: MyColors.whiteColor,
+                                    Image.asset(
+                                      'images/icon_heart_white.png',
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 10),
+                                const Text(
+                                  "Liked Songs",
+                                  style: TextStyle(
+                                    fontFamily: "AB",
+                                    fontSize: 12,
+                                    color: MyColors.whiteColor,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(width: 10),
-                        _RecentPlaysChip(
-                          image: "artists/JID.jpg",
-                          title: "JID",
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) {
-                                    var bloc = AlbumBloc(locator.get());
-                                    bloc.add(AlbumListEvent("21 Savage"));
-                                    return bloc;
-                                  },
-                                  child: const AlbumViewScreen(),
-                                ),
-                              ),
-                            );
-                          },
+                        Flexible(
+                          flex: 1,
                           child: _RecentPlaysChip(
-                            image: "home/american-dream.jpg",
-                            title: "american dream",
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) {
-                                    var bloc = AlbumBloc(locator.get());
-                                    bloc.add(AlbumListEvent("Travis Scott"));
-                                    return bloc;
-                                  },
-                                  child: const AlbumViewScreen(),
-                                ),
-                              ),
-                            );
-                          },
-                          child: _RecentPlaysChip(
-                            image: "home/UTOPIA.jpg",
-                            title: "UTOPIA",
+                            image: "artists/JID.jpg",
+                            title: "JID",
                           ),
                         ),
                       ],
@@ -1008,32 +965,94 @@ class _Header extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) {
-                                    var bloc = PlaylistBloc(locator.get());
-                                    bloc.add(PlaylistFetchEvent("Upbeat"));
-                                    return bloc;
-                                  },
-                                  child: const PlaylistSearchScreen(
-                                    cover: "Upbeat-Mix.jpg",
+                        Flexible(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                    create: (context) {
+                                      var bloc = AlbumBloc(locator.get());
+                                      bloc.add(AlbumListEvent("21 Savage"));
+                                      return bloc;
+                                    },
+                                    child: const AlbumViewScreen(),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: _RecentPlaysChip(
-                            image: "home/Upbeat-Mix.jpg",
-                            title: "Upbeat Mix",
+                              );
+                            },
+                            child: _RecentPlaysChip(
+                              image: "home/american-dream.jpg",
+                              title: "american dream",
+                            ),
                           ),
                         ),
-                        _RecentPlaysChip(
-                          image: "home/Daily-Mix-1.jpg",
-                          title: "Daily Mix",
+                        const SizedBox(width: 10),
+                        Flexible(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                    create: (context) {
+                                      var bloc = AlbumBloc(locator.get());
+                                      bloc.add(AlbumListEvent("Travis Scott"));
+                                      return bloc;
+                                    },
+                                    child: const AlbumViewScreen(),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: _RecentPlaysChip(
+                              image: "home/UTOPIA.jpg",
+                              title: "UTOPIA",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                    create: (context) {
+                                      var bloc = PlaylistBloc(locator.get());
+                                      bloc.add(PlaylistFetchEvent("Upbeat"));
+                                      return bloc;
+                                    },
+                                    child: const PlaylistSearchScreen(
+                                      cover: "Upbeat-Mix.jpg",
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: _RecentPlaysChip(
+                              image: "home/Upbeat-Mix.jpg",
+                              title: "Upbeat Mix",
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Flexible(
+                          flex: 1,
+                          child: _RecentPlaysChip(
+                            image: "home/Daily-Mix-1.jpg",
+                            title: "Daily Mix",
+                          ),
                         ),
                       ],
                     ),
